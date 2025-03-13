@@ -9,9 +9,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    return if @user.save
-
-    render 'new', status: :unprocessable_entity
+    if @user.save
+      redirect_to @user
+    else
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   private
