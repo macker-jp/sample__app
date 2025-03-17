@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i[edit update]
+  before_action :logged_in_user, only: %i[edit update index]
   before_action :correct_user, only: %i[edit update]
   def show
     @user = User.find(params[:id])
@@ -30,6 +30,10 @@ class UsersController < ApplicationController
     else
       render 'edit', status: :unprocessable_entity
     end
+  end
+
+  def index
+    @user = User.all
   end
 
   private
